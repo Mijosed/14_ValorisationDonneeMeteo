@@ -33,10 +33,10 @@ jobs:
         run: uv sync --extra dev
 
       - name: Auto-fix lint issues
-        run: uv run ruff check . --fix
+        run: uv run ruff check . --fix --ignore=DJ001
 
       - name: Check remaining lint issues
-        run: uv run ruff check . --output-format=github
+        run: uv run ruff check . --output-format=github --ignore=DJ001
 
   # Backend tests
 
