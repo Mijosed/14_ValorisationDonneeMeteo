@@ -32,16 +32,11 @@ jobs:
       - name: Install dependencies
         run: uv sync --extra dev
 
-      - name: Run ruff
-        run: uv run ruff check . --output-format=github
+      - name: Auto-fix lint issues
+        run: uv run ruff check . --fix
 
-      - name: Upload lint report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-lint-report
-          path: backend/ruff-report.json
-          if-no-files-found: ignore
+      - name: Check remaining lint issues
+        run: uv run ruff check . --output-format=github
 
   # Backend tests
 
